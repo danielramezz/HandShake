@@ -1,0 +1,8 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# This laptop only: database, private keys, cloudflared.exe
+local/

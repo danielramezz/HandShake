@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Handshake logo: two hands shaking inside a chat bubble ("every message is a handshake") -->
+  <rect width="100" height="100" rx="26" fill="#0f766e"/>
+  <!-- chat bubble -->
+  <path d="M50 13C72 13 88 27 88 46S72 79 50 79c-6 0-11-1-16-3l-16 9 4-16c-7-6-10-14-10-23 0-19 16-33 38-33Z" fill="#fff" opacity=".24"/>
+  <!-- handshake, drawn on a 100x100 grid and scaled into the bubble -->
+  <g transform="translate(13 10) scale(.74)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <g stroke="#fff">
+      <path d="M13 72 24 61M87 72 76 61" stroke-width="15" stroke-opacity=".62"/>            <!-- sleeves -->
+      <path d="M24 61 30 52M76 61 70 52" stroke-width="15" stroke-linecap="butt"/>            <!-- wrists -->
+      <path d="M30 52c8-8 18-10 28-6l8 4" stroke-width="14"/>                                  <!-- lower hand -->
+      <path d="M70 52c-6-10-16-16-26-14" stroke-width="15"/>                                   <!-- upper hand -->
+      <path d="m44 38-8 8m14-4-9 10m15-5-9 10m14-5-7 8" stroke-width="7.5"/>                  <!-- fingers -->
+      <path d="M38 40c6-7 14-9 20-6" stroke-width="7"/>                                        <!-- thumb -->
+    </g>
+    <g stroke="#0f766e">
+      <path d="m19 55 10 10m52-10-10 10" stroke-width="3"/>                                    <!-- cuffs -->
+      <path d="m44.5 44-4.5 5m10.5 0-5.5 6m11.5-1-5.5 6M44 41c5-4 10-5 14-3" stroke-width="2.6"/> <!-- gaps -->
+    </g>
+  </g>
+</svg>

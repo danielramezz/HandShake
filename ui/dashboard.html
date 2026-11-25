@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <title>Handshake Monitor</title>
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <script type="module" src="required/dashboard.js"></script>
+</head>
+<body class="dash">
+  <header class="dash-head">
+    <div class="brand small">
+      <img src="img/logo.svg" alt="" class="brand-logo">
+      <span class="brand-name">Handshake</span>
+      <span class="dash-title">Server monitor</span>
+    </div>
+    <div class="dash-head-right">
+      <span class="live" id="live"><span class="dot"></span><span id="live-text">Connecting…</span></span>
+      <span class="muted">Uptime <strong id="uptime">-</strong></span>
+    </div>
+  </header>
+
+  <main class="dash-grid">
+    <!-- Join card: how phones discover the server (network layer) -->
+    <section class="card join">
+      <h2>Join from a phone</h2>
+      <div class="segmented qr-tabs" id="qr-tabs">
+        <button type="button" class="active" data-qr="join">1 · Open app</button>
+        <button type="button" data-qr="cert">iPhone: certificate</button>
+        <button type="button" data-qr="remote" hidden>From anywhere</button>
+      </div>
+      <div class="qr" id="qr" aria-label="QR code"></div>
+      <div class="join-url mono" id="join-url">-</div>
+      <ul class="facts" id="net-facts"></ul>
+    </section>
+
+    <!-- Stat tiles: single headline numbers -->
+    <section class="tiles">
+      <div class="kpis">
+        <div class="tile">
+          <span class="tile-label">Active connections</span>
+          <strong class="tile-value" id="t-conns">-</strong>
+          <div class="split" id="t-split" aria-hidden="true"><span class="s1"></span><span class="s2"></span></div>
+          <span class="tile-sub" id="t-split-text">-</span>
+        </div>
+        <div class="tile">
+          <span class="tile-label">Messages / second</span>
+          <strong class="tile-value" id="t-rate">-</strong>
+          <span class="tile-sub">peak (60 s) <b id="t-peak">-</b></span>
+        </div>
+        <div class="tile">
+          <span class="tile-label">Average round trip</span>
+          <strong class="tile-value" id="t-rtt">-</strong>
+          <span class="tile-sub" id="t-rtt-sub">-</span>
+        </div>
+        <div class="tile">
+          <span class="tile-label">Messages stored</span>
+          <strong class="tile-value" id="t-total">-</strong>
+          <span class="tile-sub" id="t-by-proto">-</span>
+        </div>
+      </div>
+      <dl class="stat-strip">
+        <div><dt>Online users</dt><dd id="t-users">-</dd></div>
+        <div><dt>Throughput</dt><dd id="t-bps">-</dd></div>
+        <div><dt>Server processing</dt><dd id="t-proc">-</dd></div>
+        <div><dt>Duplicates rejected</dt><dd id="t-dups">-</dd></div>
+        <div><dt>Protocol errors</dt><dd id="t-errors">-</dd></div>
+      </dl>
+    </section>
+
+    <!-- Charts -->
+    <section class="card chart-card rate-card">
+      <div class="card-head">
+        <h2>Messages per second</h2>
+        <span class="muted small">last 60 seconds</span>
+      </div>
+      <div class="chart" id="chart-rate"></div>
+      <details class="table-view"><summary>Show as table</summary><div id="table-rate"></div></details>
+    </section>
+
+    <section class="card chart-card bytes-card">
+      <div class="card-head">
+        <h2>Throughput</h2>
+        <div class="legend">
+          <span><i class="sw s1"></i>Bytes in</span>
+          <span><i class="sw s2"></i>Bytes out</span>
+        </div>
+      </div>
+      <div class="chart" id="chart-bytes"></div>
+      <details class="table-view"><summary>Show as table</summary><div id="table-bytes"></div></details>
+    </section>
+
+    <!-- Connections: each row is one TCP socket, identified by its 4-tuple -->
+    <section class="card wide">
+      <div class="card-head">
+        <h2>Open sockets</h2>
+        <span class="muted small">TCP demultiplexes by 4-tuple: (client IP, client port, server IP, server port)</span>
+      </div>
+      <div class="table-wrap">
+        <table class="conn-table">
+          <thead>
+            <tr><th>User</th><th>Protocol</th><th>From</th><th>Client socket</th><th>Server socket</th><th>Connected</th><th>In / Out</th><th>RTT</th></tr>
+          </thead>
+          <tbody id="conn-rows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card log-card">
+      <div class="card-head"><h2>Event log</h2></div>
+      <ol class="log" id="log"></ol>
+    </section>
+  </main>
+
+  <div class="tooltip" id="tooltip" role="tooltip"></div>
+</body>
+</html>

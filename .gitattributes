@@ -1,0 +1,4 @@
+# Keep the right line endings on every teammate's computer
+* text=auto
+*.sh text eol=lf
+*.bat text eol=crlf

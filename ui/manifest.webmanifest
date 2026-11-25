@@ -1,0 +1,16 @@
+{
+  "name": "Handshake",
+  "short_name": "Handshake",
+  "description": "Real-time chat over your local network, end-to-end encrypted.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0e1114",
+  "theme_color": "#0f766e",
+  "icons": [
+    { "src": "img/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "img/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "img/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
